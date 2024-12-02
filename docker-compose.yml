@@ -1,0 +1,19 @@
+services:
+  strapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: strapi-app
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "${PORT}:1337"
+    env_file:
+      - .env
+    command: |
+      sh -c "yarn start"
+
+volumes:
+  postgres_data:
